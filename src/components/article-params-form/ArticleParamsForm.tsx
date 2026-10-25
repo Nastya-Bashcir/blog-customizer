@@ -48,7 +48,7 @@ export const ArticleParamsForm = ({
 
   const asideRef = useRef<HTMLElement>(null);
 
-  useEffect((): void => {
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
       if (
         isOpen &&
