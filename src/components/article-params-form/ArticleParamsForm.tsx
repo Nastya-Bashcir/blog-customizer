@@ -13,6 +13,7 @@ import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 import { RadioGroup } from 'src/ui/radio-group';
 import { Select } from 'src/ui/select';
+import { Separator } from 'src/ui/separator';
 
 import styles from './ArticleParamsForm.module.scss';
 
@@ -49,6 +50,8 @@ export const ArticleParamsForm = ({
   const asideRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleClickOutside = (event: MouseEvent): void => {
       if (
         isOpen &&
@@ -74,45 +77,59 @@ export const ArticleParamsForm = ({
       >
         <form className={styles.form} onSubmit={handleApply}>
           {/* Выбор шрифта */}
-          <Select
-            title="Шрифт"
-            options={fontFamilyOptions}
-            selected={formState.fontFamilyOption}
-            onChange={(value) => handleChange('fontFamilyOption')(value)}
-          />
+          <div className={styles.formElement}>
+            <Select
+              title="Шрифт"
+              options={fontFamilyOptions}
+              selected={formState.fontFamilyOption}
+              onChange={(value) => handleChange('fontFamilyOption')(value)}
+            />
+          </div>
 
           {/* Выбор размера шрифта */}
-          <RadioGroup
-            name="fontSize"
-            title="Размер шрифта"
-            options={fontSizeOptions}
-            selected={formState.fontSizeOption}
-            onChange={(value) => handleChange('fontSizeOption')(value)}
-          />
+          <div className={styles.formElement}>
+            <RadioGroup
+              name="fontSize"
+              title="Размер шрифта"
+              options={fontSizeOptions}
+              selected={formState.fontSizeOption}
+              onChange={(value) => handleChange('fontSizeOption')(value)}
+            />
+          </div>
 
           {/* Выбор цвета шрифта */}
-          <Select
-            title="Цвет шрифта"
-            options={fontColors}
-            selected={formState.fontColor}
-            onChange={(value) => handleChange('fontColor')(value)}
-          />
+          <div className={styles.formElement}>
+            <Select
+              title="Цвет шрифта"
+              options={fontColors}
+              selected={formState.fontColor}
+              onChange={(value) => handleChange('fontColor')(value)}
+            />
+          </div>
+
+          <div className={styles.separatorWrapper}>
+            <Separator />
+          </div>
 
           {/* Выбор цвета фона */}
-          <Select
-            title="Цвет фона"
-            options={backgroundColors}
-            selected={formState.backgroundColor}
-            onChange={(value) => handleChange('backgroundColor')(value)}
-          />
+          <div className={styles.formElement}>
+            <Select
+              title="Цвет фона"
+              options={backgroundColors}
+              selected={formState.backgroundColor}
+              onChange={(value) => handleChange('backgroundColor')(value)}
+            />
+          </div>
 
           {/* Выбор ширины контента */}
-          <Select
-            title="Ширина контента"
-            options={contentWidthArr}
-            selected={formState.contentWidth}
-            onChange={(value) => handleChange('contentWidth')(value)}
-          />
+          <div className={styles.formElement}>
+            <Select
+              title="Ширина контента"
+              options={contentWidthArr}
+              selected={formState.contentWidth}
+              onChange={(value) => handleChange('contentWidth')(value)}
+            />
+          </div>
 
           <div className={styles.bottomContainer}>
             <Button
